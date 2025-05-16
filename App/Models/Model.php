@@ -30,17 +30,17 @@ public function save(): void {
 }
 
     public function delete(): void {
-        echo "Eliminando " . static::class . " de la base de datos";
+        echo "Eliminando usuario de la base de datos";
         echo "<br>";
     }
 
     public function findById(int $id): void {
-        echo "Buscando " . static::class . " con ID $id en la base de datos";
+        echo "Buscando usuario con ID $id en la base de datos";
         echo "<br>";
     }
 
     public function getAll(): void {
-        echo "Obteniendo todos los registros de " . static::class;
+        echo "Obteniendo todos los registros de usuario";
         echo "<br>";
     }
 }
