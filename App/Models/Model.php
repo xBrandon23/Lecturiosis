@@ -8,7 +8,7 @@ abstract class Model implements ModelInterface {
     protected static ?PDO $connection = null;
 
     public function __construct() {
-            // Desactivado para simulación sin base de datos
+            // Desactivado para simulación sin base de datos no me funciono con eso por las ;extensiones de los archivos
     /*
     if (self::$connection === null) {
         try {
@@ -28,17 +28,14 @@ public function save(): void {
 }
 
     public function delete(): void {
-        // Simular operación de borrado
         echo "Eliminando " . static::class . " de la base de datos.<br>";
     }
 
     public function findById(int $id): void {
-        // Simular operación de búsqueda por ID
         echo "Buscando " . static::class . " con ID $id en la base de datos.<br>";
     }
 
     public function getAll(): void {
-        // Simular obtención de todos los registros
         echo "Obteniendo todos los registros de " . static::class . ".<br>";
     }
 }

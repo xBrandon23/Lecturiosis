@@ -2,7 +2,6 @@
 namespace App\Models;
 
 class User extends Model {
-    // La conexión PDO está manejada en la clase Model (superclase).
 
     // Atributos privados del usuario
     private ?int $id = null;
@@ -30,7 +29,4 @@ class User extends Model {
     public function setEmail(string $email): void {
         $this->email = $email;
     }
-
-    // La clase User hereda los métodos save(), delete(), findById() y getAll() de Model.
-    // (Opcionalmente, estos métodos se podrían anular aquí para operaciones reales con la base de datos.)
 }
