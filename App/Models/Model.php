@@ -15,7 +15,8 @@ abstract class Model implements ModelInterface {
             self::$connection = new PDO('mysql:host=localhost;dbname=lecturiosis;charset=utf8', 'root', '');
             self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            echo "Error de conexión: " . $e->getMessage() . "<br>";
+            echo "Error de conexión: " . $e->getMessage();
+            echo "<br>";
         }
     }
     */
@@ -24,18 +25,22 @@ protected static array $dbFake = [];
 
 public function save(): void {
     self::$dbFake[] = get_object_vars($this);
-    echo "Usuario simulado guardado en memoria.<br>";
+    echo "Usuario simulado guardado";
+    echo "<br>";
 }
 
     public function delete(): void {
-        echo "Eliminando " . static::class . " de la base de datos.<br>";
+        echo "Eliminando " . static::class . " de la base de datos";
+        echo "<br>";
     }
 
     public function findById(int $id): void {
-        echo "Buscando " . static::class . " con ID $id en la base de datos.<br>";
+        echo "Buscando " . static::class . " con ID $id en la base de datos";
+        echo "<br>";
     }
 
     public function getAll(): void {
-        echo "Obteniendo todos los registros de " . static::class . ".<br>";
+        echo "Obteniendo todos los registros de " . static::class;
+        echo "<br>";
     }
 }

@@ -7,16 +7,15 @@ class IndexController {
     public function index(): void {
         // Instanciar un usuario y asignar atributos usando setters
         $user = new User();
-        $user->setName("John Doe");
-        $user->setEmail("john@example.com");
+        $user->setName("Brandon");
+        $user->setEmail("brandon23@gmail.com");
 
-        // Llamar a los métodos definidos (save, findById, delete, getAll)
+
         $user->save();
         $user->findById(1);
         $user->delete();
         $user->getAll();
 
-        // Cargar la vista correspondiente
         require __DIR__ . "/../Views/IndexView.php";
     }
 }

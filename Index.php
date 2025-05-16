@@ -15,9 +15,9 @@ class Index {
     }
 }
 
-// Ejecución tradicional
-// $app = new Index();
-// $app->execute();
+//Ejecución tradicional
+$app = new Index();
+$app->execute();
 
 // Ejecución con objeto anónimo
-(new Index())->execute();
+//(new Index())->execute();

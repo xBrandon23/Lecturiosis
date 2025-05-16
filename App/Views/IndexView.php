@@ -6,7 +6,7 @@
     <title>Lecturiosis</title>
 </head>
 <body>
-    <h1>Bienvenido a Lecturiosis</h1>
-    <p>Las operaciones de usuario se realizaron correctamente. Revisa los mensajes de salida arriba.</p>
+    <h1>Proyecto Lecturiosis</h1>
+    <p>Las operaciones de usuario se realizaron correctamente. Revisa los mensajes de salida arriba :D.</p>
 </body>
 </html>
