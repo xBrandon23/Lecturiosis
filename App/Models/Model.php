@@ -1,26 +1,45 @@
 <?php
 namespace App\Models;
+use App\Contracts\ModelInterface;
 
 use PDO;
 use PDOException;
 
-abstract class Model implements ModelInterface {
-    protected static ?PDO $connection = null;
+class Connection
+{
 
-    public function __construct() {
-            // Desactivado para simulación sin base de datos no me funciono con eso por las ;extensiones de los archivos
-    /*
-    if (self::$connection === null) {
-        try {
-            self::$connection = new PDO('mysql:host=localhost;dbname=lecturiosis;charset=utf8', 'root', '');
-            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
-            echo "Error de conexión: " . $e->getMessage();
-            echo "<br>";
-        }
+    public static $instance = null;
+
+    private function __construc()
+    {
     }
-    */
-}
+
+    public static function getInstance()
+    {
+        if (empty(self::$instance)) {
+
+            $db_server = '127.0.0.1';
+            $db_user = 'root';
+            $db_name = 'lecturiosis';
+            $db_password = 'ileana1102';
+
+            try {
+                self::$instance = new \PDO(
+                    "mysql:host=$db_server;dbname=$db_name",
+                    $db_user,
+                    $db_password
+                );
+                self::$instance->setAttribute(
+                    \PDO::ATTR_ERRMODE,
+                    \PDO::ERRMODE_EXCEPTION
+                );
+            } catch (\Throwable $th) {
+                echo "Error de conexión: " . $th->getMessage();
+                exit;
+            }
+        }
+        return self::$instance;
+    }
 protected static array $dbFake = [];
 
 public function save(): void {

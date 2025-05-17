@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+namespace App\Contracts;
 
 interface ModelInterface {
     public function save(): void;
