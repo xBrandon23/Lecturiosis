@@ -15,7 +15,7 @@
             <form action="/App/Actions/SearchUser.php" method="POST" class="d-flex w-100 w-md-50 me-md-3 mb-2 mb-md-0">
                 <div class="input-group w-100">
                     <input type="text" class="form-control" name="searchInput"
-                        placeholder="Buscar usuario por nombre o correo">
+                        placeholder="Buscar usuario por id, nombre o correo">
                     <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                 </div>
             </form>
