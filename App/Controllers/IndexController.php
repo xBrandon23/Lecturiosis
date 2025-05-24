@@ -3,19 +3,16 @@ namespace App\Controllers;
 
 use App\Models\User;
 
-class IndexController {
-    public function index(): void {
-        // Instanciar un usuario y asignar atributos usando setters
-        $user = new User();
-        $user->setName("Brandon");
-        $user->setEmail("brandon23@gmail.com");
+class IndexController
+{
+    public function ejecutar()
+    {
+        $users = $_SESSION['users'] ?? User::get();
+        $mensaje = $_SESSION['mensaje'] ?? '';
+        $input = $_SESSION['input'] ?? '';
 
+        unset($_SESSION['users'], $_SESSION['mensaje'], $_SESSION['input']);
 
-        $user->save();
-        $user->findById(1);
-        $user->delete();
-        $user->getAll();
-
-        require __DIR__ . "/../Views/IndexView.php";
+        include('./App/Views/IndexView.php');
     }
 }

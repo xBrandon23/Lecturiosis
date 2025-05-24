@@ -1,65 +1,59 @@
 <?php
+
 namespace App\Models;
+
 use App\Contracts\ModelInterface;
+use App\Models\Connection;
 
-use PDO;
-use PDOException;
 
-class Connection
-{
 
-    public static $instance = null;
+class Model implements ModelInterface{
 
-    private function __construc()
+    protected static $table = '';
+
+    private static $dbInstance;
+
+    public function __construct()
     {
+        self::$dbInstance = Connection::getInstance();
     }
 
-    public static function getInstance()
+    protected static function getTable()
     {
-        if (empty(self::$instance)) {
+        return static::$table;
+    }
 
-            $db_server = '127.0.0.1';
-            $db_user = 'root';
-            $db_name = 'lecturiosis';
-            $db_password = 'ileana1102';
+    public function save()
+    {
+        echo "Guardando el modelo...<br>";    
+    }
 
-            try {
-                self::$instance = new \PDO(
-                    "mysql:host=$db_server;dbname=$db_name",
-                    $db_user,
-                    $db_password
-                );
-                self::$instance->setAttribute(
-                    \PDO::ATTR_ERRMODE,
-                    \PDO::ERRMODE_EXCEPTION
-                );
-            } catch (\Throwable $th) {
-                echo "Error de conexión: " . $th->getMessage();
-                exit;
-            }
+    public function delete()
+    {
+        echo "Borrando el modelo...<br>";
+    }
+
+    public function findById($id)
+    {
+    $table = static::getTable();
+    $sql = "SELECT * FROM $table WHERE id = :id";
+    $result = self::$dbInstance->prepare($sql);
+    $result->execute(['id' => $id]);
+    return $result->fetch(\PDO::FETCH_ASSOC);
+    }
+
+
+
+    public static function get()
+    {
+        $table = static::getTable();
+        $sql = "SELECT * FROM $table";
+        if (!isset(self::$dbInstance)){
+            self::$dbInstance = Connection::getInstance();
         }
-        return self::$instance;
-    }
-protected static array $dbFake = [];
+        $result = self::$dbInstance->prepare($sql);
+        $result->execute();
 
-public function save(): void {
-    self::$dbFake[] = get_object_vars($this);
-    echo "Usuario simulado guardado";
-    echo "<br>";
-}
-
-    public function delete(): void {
-        echo "Eliminando usuario de la base de datos";
-        echo "<br>";
-    }
-
-    public function findById(int $id): void {
-        echo "Buscando usuario con ID $id en la base de datos";
-        echo "<br>";
-    }
-
-    public function getAll(): void {
-        echo "Obteniendo todos los registros de usuario";
-        echo "<br>";
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

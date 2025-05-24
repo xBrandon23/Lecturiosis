@@ -1,32 +1,55 @@
 <?php
+
 namespace App\Models;
 
-class User extends Model {
+require_once 'Model.php';
 
-    // Atributos privados del usuario
-    private ?int $id = null;
-    private string $name = "";
-    private string $email = "";
+use App\Models\Model;
 
-    // Getters
-    public function getId(): ?int {
+Class User extends Model{
+
+    protected static $table = 'users';
+    
+    private $id;
+    private $nombre;
+    private $email;
+    private string $password = '';
+
+    public function getId()
+    {
         return $this->id;
     }
-    public function getName(): string {
-        return $this->name;
+
+    public function getNombre()
+    {
+        return $this->nombre;
     }
-    public function getEmail(): string {
+    public function getEmail()
+    {
         return $this->email;
     }
+    public function getPassword()
+    {
+        return $this->password;
+    }
 
-    // Setters
-    public function setId(int $id): void {
+    public function setId($id)
+    {
         $this->id = $id;
     }
-    public function setName(string $name): void {
-        $this->name = $name;
+
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
     }
-    public function setEmail(string $email): void {
+
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
 }
